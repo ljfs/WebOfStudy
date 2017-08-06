@@ -1,0 +1,14 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#boys{
+	background-image: url("WebRoot/imgs/boybackground.png");
+	background-repeat: repeat;
+}
+
+#girl{
+	background-image: url("WebRoot/imgs/girlbackground.png");
+	background-repeat: repeat;
+}

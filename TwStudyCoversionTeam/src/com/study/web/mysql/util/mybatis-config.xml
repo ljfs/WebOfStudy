@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    <!-- 配置 -->
+<configuration>
+    <!-- 定义很多环境,默认环境是development -->
+    <environments default="development">
+        <!-- 定义一个名字叫development的环境 -->
+        <environment id="development">
+            <!-- 事务管理采用的方式是JDBC -->
+            <transactionManager type="JDBC" />
+            <!-- 数据源采用POOLED连接池方式 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://PC-20160214FJYX:3306/managerdb" />
+                <property name="username" value="root" />
+                <property name="password" value="ljfxwf2015" />
+            </dataSource>
+        </environment>
+    </environments>
+	<mappers>
+        <mapper resource="com/study/web/mysql/dao/mapper/PersionMapper.xml"/>
+        <mapper resource="com/study/web/mysql/dao/mapper/ArearMapper.xml"/>
+    </mappers>
+</configuration>

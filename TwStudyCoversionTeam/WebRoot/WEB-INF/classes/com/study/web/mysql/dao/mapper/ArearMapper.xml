@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.study.web.mysql.dao.ArearDao">
+    	<!-- 配置省份参数信息 -->
+    	<resultMap type="com.study.web.entity.Province" id="province">
+    		<id column="id" jdbcType="INTEGER" property="id"/>
+    		<result column="province" jdbcType="VARCHAR" property="province"/>
+    	</resultMap>
+    	<!-- 省份字段 -->
+    	<!-- <sql id="provinceColumn">
+    		id,Province
+    	</sql> -->
+    	<!-- 查询全部省份 -->
+    	<!-- <select id="queryProvice" 
+    	resultMap="province">
+    		select 
+    		<include refid="provinceColumn"/> 
+    		from province
+    	</select> -->
+    	<!-- 通过省份编号查找省份 -->
+    	<!-- <select id="queryProvinceById" 
+    	parameterType="com.study.web.entity.Province" 
+    	resultMap="province">
+    		select 
+    		<include refid="provinceColumn"/>
+			where 1=1
+			<if test="id != -1">
+			AND id = #{id}
+			</if>
+			 
+    	</select> -->
+    	<!-- 通过省份名称查找省份 -->
+    	<!-- <select id="queryProvinceByName" 
+    	parameterType="String" 
+    	resultMap="province">
+    		select 
+    		<include refid="provinceColumn"/> 
+    		from province 
+    		where 1=1
+    		<if test="Province">
+    		AND Province = #{province}
+    		</if>
+    		 
+    	</select> -->
+    	<!-- 添加一个省份信息 -->
+    	<!-- <insert id="addProvince" 
+    	parameterType="com.study.web.entity.Province" >
+    		insert into 
+    		province(
+    		<include refid="provinceColumn"/> 
+    		) 
+    		values(
+    		null,
+    		#{province}
+    		)
+    	</insert> -->
+    	<!-- 上半部分为对省份操作的sql命令 -->
+    	<!-- 配置城市参数信息 -->
+    	<resultMap type="com.study.web.entity.City" id="city">
+    		<id column="id" jdbcType="INTEGER" property="id"/>
+    		<result column="t_city" jdbcType="VARCHAR" property="city"/>
+    		<result column="pid" jdbcType="INTEGER" property="pid"/>
+    	</resultMap>
+    	<!-- 城市字段 -->
+    	<!-- <sql id="cityColumn">
+    		id ,
+    		t_city , 
+    		pid
+    	</sql> -->
+    	<!-- 查询所有城市名称 -->
+    	<!-- <select id="queryCity" 
+    	resultMap="city">
+    		select 
+    		<include refid="cityColumn"/>
+			from city
+    	</select> -->
+    	<!-- 通过省份id编号查找城市 -->
+    	<!-- <select id="queryCityByProvinceId" 
+    	parameterType="com.study.web.entity.City" 
+    	resultMap="city">
+    		select 
+    		<include refid="cityColumn"/>
+			from city 
+			where 1=1
+			<if test="pid != null and pid != ''">
+			AND pid = #{id}
+			</if>
+			
+    	</select> -->
+    	<!-- 通过id编号查找城市信息 -->
+    	<!-- <select id="queryCityById" 
+    	parameterMap="com.study.web.entity.City" 
+    	resultMap="city">
+    		select 
+    		<include refid="cityColumn"/>
+			from city 
+			where 1=1
+			<if test="id != null and id != ''">
+			AND id = #{id}
+			</if>
+			
+    	</select> -->
+    	<!-- <select id="queryCityByName" 
+    	parameterType="String" 
+    	resultMap="city">
+    		<include refid="cityColumn"/>
+			from city 
+			where 1=1
+			 t_city = #{city}
+    	</select> -->
+    	
+    	<!-- 添加一个城市信息 -->
+    	<!-- <insert id="addCity" 
+    	parameterType="com.study.web.entity.City">
+    		insert into city(
+    		<include refid="cityColumn"/>
+    		) 
+    		values(
+    		null,
+    		#{pid},
+    		#{city}
+    		)
+    	</insert> -->
+    	
+    </mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.study.web.mysql.dao.PersionDao">
+    	<!-- 查询所有成员的总数，返回一个整型值 -->
+    	<select id="countPersion" resultType="int">
+    		select count(*) from t_person
+    	</select>
+    	<!-- 配置成员返回值的类型 -->
+    	<resultMap type="com.study.web.entity.Persion" id="queryAllPersonMessage">
+    		<!-- id标识 -->
+    		<id column="id" jdbcType="INTEGER" property="id"/>
+    		<!-- 姓名 -->
+    		<result column="pName" jdbcType="VARCHAR" property="name" />
+    		<!-- 性别 -->
+    		<result column="pGender" jdbcType="VARCHAR" property="gender" />
+    		<!-- 年龄 -->
+    		<result column="pAge" jdbcType="INTEGER" property="age" />
+    		<!-- 省份 -->
+    		<result column="pProvince" jdbcType="VARCHAR" property="province" />
+    		<!-- 城市 -->
+    		<result column="pCity" jdbcType="VARCHAR" property="city" />
+    		<!-- 手机号 -->
+    		<result column="pMBP" jdbcType="VARCHAR" property="moblePhone" />
+    		<!-- QQ -->
+    		<result column="pQId" jdbcType="VARCHAR" property="Qid" />
+    		<!-- 所选课程编号 -->
+    		<result column="pSubjects" jdbcType="VARCHAR" property="subject" />
+    		<!-- 信誉度 -->
+    		<result column="pReputation" jdbcType="INTEGER" property="reputation" />
+    	</resultMap>
+    	<sql id="persionColumn">
+    		id , 
+    		pName , 
+    		pGender , 
+    		pAge , 
+    		pProvince , 
+    		pCity ,
+    		pMBP , 
+    		pQId , 
+    		pSubjects , 
+    		pReputation
+    	</sql>
+    	<!-- 查询所有成员的信息，
+    	映射出一个实体类的集合 -->
+    	<select id="queryAllPersion" resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person
+    	</select>
+    	<!-- 通过姓名查找成员信息 -->
+    	<select id="queryPersionByName" 
+    		parameterType="com.study.web.entity.Persion"
+    		 resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<if test="name != null">
+    			and pName = #{name}
+    		</if>
+    	</select>
+    	<!-- 通过成员信誉度
+    	查找成员信息 -->
+    	<select id="queryPersionByRequtation"
+    	 parameterType="com.study.web.entity.Persion"
+    	  resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<if test="requation != null">
+    			and pReputation = #{reputation}
+    		</if>
+    	</select>
+    	<!-- 通过成员所在的区域
+    	查询成员信息 -->
+    	<select id="queryPersionByArear"
+    	 parameterType="com.study.web.entity.Persion"
+    	  resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<!-- 在test中填写ognl表达式 -->
+    		<if test="province != null and province != ''">
+    			and pProvince = #{province}
+    		</if>
+    		<if test="city != null and city != ''">
+    			and pCity = #{city}
+    		</if>
+    	</select>
+    	<!-- 通过性别
+    	查询成员信息 -->
+    	<select id="queryPersionBySex"
+    	 parameterType="com.study.web.entity.Persion"
+    	  resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<if test="gender != null and gender != ''">
+    			and pGender = #{gender}
+    		</if>
+    	</select>
+    	<!-- 通过成员的编号
+    	查询成员信息 -->
+    	<select id="queryPersionById"
+    	 parameterType="com.study.web.entity.Persion"
+    	  resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<if test="id > 0">
+    			and id = #{id}
+    		</if>
+    	</select>
+    	<!-- 通过成员手机号
+    	查询成员信息 -->
+    	<select id="queryPersionByPhone"
+    	 parameterType="com.study.web.entity.Persion"
+    	  resultMap="queryAllPersonMessage">
+    		select 
+    		<include refid="persionColumn"/>
+    		 from t_person where1=1
+    		<if test="moblePhone != null and moblePhone != ''">
+    			and pSubjects = #{moblePhone}
+    		</if>
+    	</select>
+    </mapper>
